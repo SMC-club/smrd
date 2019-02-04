@@ -1,0 +1,10 @@
+[Unit]
+Description=SMC Peer-to-Peer Network Daemon
+
+[Service]
+Type=simple
+User=smc
+ExecStart=/usr/bin/smcd --conf=/etc/opt/smc/smcd.cfg
+
+[Install]
+WantedBy=multi-user.target
