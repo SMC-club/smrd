@@ -195,7 +195,7 @@ bool PathRequest::isValid (std::shared_ptr<RippleLineCache> const& crCache)
         jvDestCur.append (Json::Value (systemCurrencyCode()));
         if (! saDstAmount.native ())
         {
-            // Only SMC can be send to a non-existent account.
+            // Only SMR can be send to a non-existent account.
             jvStatus = rpcError (rpcACT_NOT_FOUND);
             return false;
         }

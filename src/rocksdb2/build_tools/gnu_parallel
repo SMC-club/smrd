@@ -1959,7 +1959,7 @@ sub progress {
 	$eta = sprintf("ETA: %ds Left: %d AVG: %.2fs  ",
 		       $this_eta, $left, $avgtime);
     }
-    my $tesmcols = terminal_columns();
+    my $termcols = terminal_columns();
     my @workers = sort keys %Global::host;
     my %sshlogin = map { $_ eq ":" ? ($_=>"local") : ($_=>$_) } @workers;
     my $workerno = 1;
@@ -1971,8 +1971,8 @@ sub progress {
             ($Global::host{$w}->ncpus() || "-")." / ".
             $Global::host{$w}->max_jobs_running()."\n";
     }
-    $status = "x"x($tesmcols+1);
-    if(length $status > $tesmcols) {
+    $status = "x"x($termcols+1);
+    if(length $status > $termcols) {
         # sshlogin1:XX/XX/XX%/XX.Xs sshlogin2:XX/XX/XX%/XX.Xs sshlogin3:XX/XX/XX%/XX.Xs
         $header = "Computer:jobs running/jobs completed/%of started jobs/Average seconds to complete";
         $status = $eta .
@@ -1989,7 +1989,7 @@ sub progress {
                      }
                  } @workers);
     }
-    if(length $status > $tesmcols) {
+    if(length $status > $termcols) {
         # 1:XX/XX/XX%/XX.Xs 2:XX/XX/XX%/XX.Xs 3:XX/XX/XX%/XX.Xs 4:XX/XX/XX%/XX.Xs
         $header = "Computer:jobs running/jobs completed/%of started jobs";
         $status = $eta .
@@ -2004,7 +2004,7 @@ sub progress {
                              / $Global::total_started, $time);
                  } @workers);
     }
-    if(length $status > $tesmcols) {
+    if(length $status > $termcols) {
         # sshlogin1:XX/XX/XX% sshlogin2:XX/XX/XX% sshlogin3:XX/XX/XX%
         $header = "Computer:jobs running/jobs completed/%of started jobs";
         $status = $eta .
@@ -2018,7 +2018,7 @@ sub progress {
                            / $Global::total_started) }
                  @workers);
     }
-    if(length $status > $tesmcols) {
+    if(length $status > $termcols) {
         # 1:XX/XX/XX% 2:XX/XX/XX% 3:XX/XX/XX% 4:XX/XX/XX% 5:XX/XX/XX% 6:XX/XX/XX%
         $header = "Computer:jobs running/jobs completed/%of started jobs";
         $status = $eta .
@@ -2032,7 +2032,7 @@ sub progress {
                            / $Global::total_started) }
                  @workers);
     }
-    if(length $status > $tesmcols) {
+    if(length $status > $termcols) {
         # sshlogin1:XX/XX/XX% sshlogin2:XX/XX/XX% sshlogin3:XX/XX sshlogin4:XX/XX
         $header = "Computer:jobs running/jobs completed";
         $status = $eta .
@@ -2042,7 +2042,7 @@ sub progress {
                                  ($Global::host{$_}->jobs_completed()||0)) }
                        @workers);
     }
-    if(length $status > $tesmcols) {
+    if(length $status > $termcols) {
         # sshlogin1:XX/XX sshlogin2:XX/XX sshlogin3:XX/XX sshlogin4:XX/XX
         $header = "Computer:jobs running/jobs completed";
         $status = $eta .
@@ -2052,7 +2052,7 @@ sub progress {
                                  ($Global::host{$_}->jobs_completed()||0)) }
                        @workers);
     }
-    if(length $status > $tesmcols) {
+    if(length $status > $termcols) {
         # 1:XX/XX 2:XX/XX 3:XX/XX 4:XX/XX 5:XX/XX 6:XX/XX
         $header = "Computer:jobs running/jobs completed";
         $status = $eta .
@@ -2062,7 +2062,7 @@ sub progress {
                                  ($Global::host{$_}->jobs_completed()||0)) }
                        @workers);
     }
-    if(length $status > $tesmcols) {
+    if(length $status > $termcols) {
         # sshlogin1:XX sshlogin2:XX sshlogin3:XX sshlogin4:XX sshlogin5:XX
         $header = "Computer:jobs completed";
         $status = $eta .
@@ -2072,7 +2072,7 @@ sub progress {
                                  ($Global::host{$_}->jobs_completed()||0)) }
                        @workers);
     }
-    if(length $status > $tesmcols) {
+    if(length $status > $termcols) {
         # 1:XX 2:XX 3:XX 4:XX 5:XX 6:XX
         $header = "Computer:jobs completed";
         $status = $eta .

@@ -48,14 +48,14 @@ RippleCalc::Output RippleCalc::rippleCalculate (
     // apply to ledger.
 
     // Issuer:
-    //      SMC: xrpAccount()
-    //  non-SMC: uSrcAccountID (for any issuer) or another account with
+    //      SMR: xrpAccount()
+    //  non-SMR: uSrcAccountID (for any issuer) or another account with
     //           trust node.
     STAmount const& saMaxAmountReq,             // --> -1 = no limit.
 
     // Issuer:
-    //      SMC: xrpAccount()
-    //  non-SMC: uDstAccountID (for any issuer) or another account with
+    //      SMR: xrpAccount()
+    //  non-SMR: uDstAccountID (for any issuer) or another account with
     //           trust node.
     STAmount const& saDstAmountReq,
 
@@ -303,7 +303,7 @@ TER RippleCalc::rippleCalculate (detail::FlowDebugInfo* flowDebugInfo)
 
     // Build a default path.  Use saDstAmountReq_ and saMaxAmountReq_ to imply
     // nodes.
-    // XXX Might also make a SMC bridge by default.
+    // XXX Might also make a SMR bridge by default.
 
     JLOG (j_.trace())
         << "rippleCalc: Paths in set: " << spsPaths_.size ();

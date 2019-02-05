@@ -102,7 +102,7 @@ std::string DoSustain ()
         auto cc = std::to_string (childCount);
         if (pChild == 0)
         {
-            beast::setCurrentThreadName ("smcd: main");
+            beast::setCurrentThreadName ("smrd: main");
             signal (SIGINT, SIG_DFL);
             signal (SIGHUP, SIG_DFL);
             signal (SIGUSR1, SIG_DFL);
@@ -110,7 +110,7 @@ std::string DoSustain ()
             return "Launching child " + cc;
         }
 
-        beast::setCurrentThreadName (("smcd: #" + cc).c_str());
+        beast::setCurrentThreadName (("smrd: #" + cc).c_str());
 
         sleep (sleepBeforeWaiting);
 

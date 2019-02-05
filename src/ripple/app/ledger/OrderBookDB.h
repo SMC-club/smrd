@@ -71,7 +71,7 @@ private:
     // by co/io
     IssueToOrderBook mDestMap;
 
-    // does an order book to SMC exist
+    // does an order book to SMR exist
     hash_set <Issue> mXRPBooks;
 
     std::recursive_mutex mLock;

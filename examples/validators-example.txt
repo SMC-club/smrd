@@ -17,9 +17,9 @@
 #   obtained from https://ripple.com/ripple.txt
 #
 #   Examples:
-#    https://vl.smc.one
+#    https://vl.smr.one
 #    http://127.0.0.1:8000
-#    file:///etc/opt/smc/vl.txt
+#    file:///etc/opt/smr/vl.txt
 #
 # [validator_list_keys]
 #

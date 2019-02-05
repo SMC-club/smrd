@@ -40,9 +40,9 @@ class ApplyView;
    There are five concrete step classes:
      DirectStepI is an IOU step between accounts
      BookStepII is an IOU/IOU offer book
-     BookStepIX is an IOU/SMC offer book
-     BookStepXI is an SMC/IOU offer book
-     XRPEndpointStep is the source or destination account for SMC
+     BookStepIX is an IOU/SMR offer book
+     BookStepXI is an SMR/IOU offer book
+     XRPEndpointStep is the source or destination account for SMR
 
    Amounts may be transformed through a step in either the forward or the
    reverse direction. In the forward direction, the function `fwd` is used to
@@ -131,7 +131,7 @@ public:
     }
 
     // for debugging. Return the src and dst accounts for a direct step
-    // For SMC endpoints, one of src or dst will be the root account
+    // For SMR endpoints, one of src or dst will be the root account
     virtual boost::optional<std::pair<AccountID,AccountID>>
     directStepAccts () const
     {

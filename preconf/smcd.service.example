@@ -1,10 +1,10 @@
 [Unit]
-Description=SMC Peer-to-Peer Network Daemon
+Description=SMR Peer-to-Peer Network Daemon
 
 [Service]
 Type=simple
-User=smc
-ExecStart=/usr/bin/smcd --conf=/etc/opt/smc/smcd.cfg
+User=smr
+ExecStart=/usr/bin/smrd --conf=/etc/opt/smr/smrd.cfg
 
 [Install]
 WantedBy=multi-user.target

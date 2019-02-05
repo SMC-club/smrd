@@ -63,8 +63,8 @@ class ValidatorKeys;
     needed.
 
     A backend application or local client can trust a local instance of
-    smcd / NetworkOPs. However, client software connecting to non-local
-    instances of smcd will need to be hardened to protect against hostile
+    smrd / NetworkOPs. However, client software connecting to non-local
+    instances of smrd will need to be hardened to protect against hostile
     or unreliable servers.
 */
 class NetworkOPs

@@ -490,7 +490,7 @@ OverlayImpl::onPrepare()
         ? app_.config().IPS_FIXED
         : app_.config().IPS;
     if (bootstrapIps.empty ())
-        bootstrapIps.push_back ("peer.smc.one 41235");
+        bootstrapIps.push_back ("peer.smr.one 41235");
 
     m_resolver.resolve (bootstrapIps,
         [this](std::string const& name,
@@ -514,7 +514,7 @@ OverlayImpl::onPrepare()
                 m_peerFinder->addFallbackStrings (base + name, ips);
         });
 
-    // Add the ips_fixed from the smcd.cfg file
+    // Add the ips_fixed from the smrd.cfg file
     if (! app_.config().standalone() && !app_.config().IPS_FIXED.empty ())
     {
         m_resolver.resolve (app_.config().IPS_FIXED,

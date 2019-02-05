@@ -36,8 +36,8 @@ namespace ripple {
 /*
     PaymentChannel
 
-        Payment channels permit off-ledger checkpoints of SMC payments flowing
-        in a single direction. A channel sequesters the owner's SMC in its own
+        Payment channels permit off-ledger checkpoints of SMR payments flowing
+        in a single direction. A channel sequesters the owner's SMR in its own
         ledger entry. The owner can authorize the recipient to claim up to a
         given balance by giving the receiver a signed message (off-ledger). The
         recipient can use this signed message to claim any unpaid balance while
@@ -58,7 +58,7 @@ namespace ripple {
         Destination
             The recipient at the end of the channel.
         Amount
-            The amount of SMC to deposit in the channel immediately.
+            The amount of SMR to deposit in the channel immediately.
         SettleDelay
             The amount of time everyone but the recipient must wait for a
             superior claim.
@@ -86,7 +86,7 @@ namespace ripple {
         Channel
             The 256-bit ID of the channel.
         Amount
-            The amount of SMC to add.
+            The amount of SMR to add.
         Expiration (optional)
             Time the channel closes. The transaction will fail if the expiration
             times does not satisfy the SettleDelay constraints.
@@ -97,10 +97,10 @@ namespace ripple {
         Channel
             The 256-bit ID of the channel.
         Balance (optional)
-            The total amount of SMC delivered after this claim is processed (optional, not
+            The total amount of SMR delivered after this claim is processed (optional, not
             needed if just closing).
         Amount (optional)
-            The amount of SMC the signature is for (not needed if equal to Balance or just
+            The amount of SMR the signature is for (not needed if equal to Balance or just
             closing the line).
         Signature (optional)
             Authorization for the balance above, signed by the owner (optional,

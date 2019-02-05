@@ -31,7 +31,7 @@ namespace detail {
 
 // We limit the ciphers we request and allow to ensure that weak
 // ciphers aren't used. While this isn't strictly necessary for
-// the smcd server-server use case, where we only need MITM
+// the smrd server-server use case, where we only need MITM
 // detection/prevention, we also have websocket and rpc scenarios
 // and want to ensure weak ciphers can't be used.
 std::string const defaultCipherList =

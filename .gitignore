@@ -25,7 +25,7 @@ build
 .nih_c
 tags
 TAGS
-bin/smcd
+bin/smrd
 Debug/*.*
 Release/*.*
 
@@ -46,7 +46,7 @@ db/*.db-*
 debug_log.txt
 
 # Ignore customized configs
-smcd.cfg
+smrd.cfg
 validators.txt
 
 # Doxygen generated documentation output
@@ -73,13 +73,13 @@ DerivedData
 *.hmap
 
 # Intel Parallel Studio 2013 XE
-My Amplifier XE Results - SMCD
+My Amplifier XE Results - SMRD
 
 # Compiler intermediate output
 /out.txt
 
 # Build Log
-smcd-build.log
+smrd-build.log
 
 # Profiling data
 gmon.out

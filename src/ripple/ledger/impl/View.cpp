@@ -317,7 +317,7 @@ xrpLiquid (ReadView const& view, AccountID const& id,
     else
     {
         // pre-switchover
-        // SMC: return balance minus reserve
+        // SMR: return balance minus reserve
         std::uint32_t const ownerCount =
             confineOwnerCount (sle->getFieldU32 (sfOwnerCount), ownerCountAdj);
         auto const reserve =
@@ -1353,7 +1353,7 @@ accountSend (ApplyView& view,
         view.creditHook (uSenderID, uReceiverID, saAmount, dummyBalance);
     }
 
-    /* SMC send which does not check reserve and can do pure adjustment.
+    /* SMR send which does not check reserve and can do pure adjustment.
      * Note that sender or receiver may be null and this not a mistake; this
      * setup is used during pathfinding and it is carefully controlled to
      * ensure that transfers are balanced.
@@ -1401,7 +1401,7 @@ accountSend (ApplyView& view,
             if (fv2Switch)
                 view.creditHook (uSenderID, xrpAccount (), saAmount, sndBal);
 
-            // Decrement SMC balance.
+            // Decrement SMR balance.
             sender->setFieldAmount (sfBalance, sndBal - saAmount);
             view.update (sender);
         }
@@ -1409,7 +1409,7 @@ accountSend (ApplyView& view,
 
     if (tesSUCCESS == terResult && receiver)
     {
-        // Increment SMC balance.
+        // Increment SMR balance.
         auto const rcvBal = receiver->getFieldAmount (sfBalance);
         receiver->setFieldAmount (sfBalance, rcvBal + saAmount);
 
@@ -1662,7 +1662,7 @@ transferXRP (ApplyView& view,
             : TER {tecFAILED_PROCESSING};
     }
 
-    // Decrement SMC balance.
+    // Decrement SMR balance.
     sender->setFieldAmount (sfBalance,
         sender->getFieldAmount (sfBalance) - amount);
     view.update (sender);

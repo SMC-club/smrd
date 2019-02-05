@@ -45,7 +45,7 @@ public:
 
     explicit UptimeClock() = default;
 
-    static time_point now();  // seconds since smcd program start
+    static time_point now();  // seconds since smrd program start
 
 private:
     static std::atomic<rep>  now_;

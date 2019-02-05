@@ -34,8 +34,8 @@ void
 ManagerImp::missing_backend()
 {
     Throw<std::runtime_error> (
-        "Your smcd.cfg is missing a [node_db] entry, "
-        "please see the smcd-example.cfg file!"
+        "Your smrd.cfg is missing a [node_db] entry, "
+        "please see the smrd-example.cfg file!"
         );
 }
 

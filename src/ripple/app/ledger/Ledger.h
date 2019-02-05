@@ -93,8 +93,8 @@ public:
         computed from the string "masterpassphrase" and ordinal
         zero.
 
-        The account has an SMC balance equal to the total amount
-        of SMC in the system. No more SMC than the amount which
+        The account has an SMR balance equal to the total amount
+        of SMR in the system. No more SMR than the amount which
         starts in this account can ever exist, with amounts
         used to pay fees being destroyed.
 

@@ -53,7 +53,7 @@ public:
     using microseconds = std::chrono::microseconds;
 
     /**
-     * Configuration from [perf] section of smcd.cfg.
+     * Configuration from [perf] section of smrd.cfg.
      */
     struct Setup
     {

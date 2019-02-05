@@ -118,9 +118,9 @@ public:
     bool validateShards = false;
     bool ELB_SUPPORT = false;
 
-    std::vector<std::string>    IPS;                    // Peer IPs from smcd.cfg.
-    std::vector<std::string>    IPS_FIXED;              // Fixed Peer IPs from smcd.cfg.
-    std::vector<std::string>    SNTP_SERVERS;           // SNTP servers from smcd.cfg.
+    std::vector<std::string>    IPS;                    // Peer IPs from smrd.cfg.
+    std::vector<std::string>    IPS_FIXED;              // Fixed Peer IPs from smrd.cfg.
+    std::vector<std::string>    SNTP_SERVERS;           // SNTP servers from smrd.cfg.
 
     enum StartUpType
     {

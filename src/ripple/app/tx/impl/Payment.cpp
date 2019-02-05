@@ -38,8 +38,8 @@ Payment::calculateMaxSpend(STTx const& tx)
         auto const& sendMax = tx[sfSendMax];
         return sendMax.native() ? sendMax.xrp() : beast::zero;
     }
-    /* If there's no sfSendMax in SMC, and the sfAmount isn't
-    in SMC, then the transaction can not send SMC. */
+    /* If there's no sfSendMax in SMR, and the sfAmount isn't
+    in SMR, then the transaction can not send SMR. */
     auto const& saDstAmount = tx.getFieldAmount(sfAmount);
     return saDstAmount.native() ? saDstAmount.xrp() : beast::zero;
 }
@@ -87,7 +87,7 @@ Payment::preflight (PreflightContext const& ctx)
     auto const& uSrcCurrency = maxSourceAmount.getCurrency ();
     auto const& uDstCurrency = saDstAmount.getCurrency ();
 
-    // isZero() is SMC.  FIX!
+    // isZero() is SMR.  FIX!
     bool const bXRPDirect = uSrcCurrency.isZero () && uDstCurrency.isZero ();
 
     if (!isLegalNet (saDstAmount) || !isLegalNet (maxSourceAmount))
@@ -132,35 +132,35 @@ Payment::preflight (PreflightContext const& ctx)
     {
         // Consistent but redundant transaction.
         JLOG(j.trace()) << "Malformed transaction: " <<
-            "SendMax specified for SMC to SMC.";
+            "SendMax specified for SMR to SMR.";
         return temBAD_SEND_XRP_MAX;
     }
     if (bXRPDirect && bPaths)
     {
-        // SMC is sent without paths.
+        // SMR is sent without paths.
         JLOG(j.trace()) << "Malformed transaction: " <<
-            "Paths specified for SMC to SMC.";
+            "Paths specified for SMR to SMR.";
         return temBAD_SEND_XRP_PATHS;
     }
     if (bXRPDirect && partialPaymentAllowed)
     {
         // Consistent but redundant transaction.
         JLOG(j.trace()) << "Malformed transaction: " <<
-            "Partial payment specified for SMC to SMC.";
+            "Partial payment specified for SMR to SMR.";
         return temBAD_SEND_XRP_PARTIAL;
     }
     if (bXRPDirect && limitQuality)
     {
         // Consistent but redundant transaction.
         JLOG(j.trace()) << "Malformed transaction: " <<
-            "Limit quality specified for SMC to SMC.";
+            "Limit quality specified for SMR to SMR.";
         return temBAD_SEND_XRP_LIMIT;
     }
     if (bXRPDirect && !defaultPathsAllowed)
     {
         // Consistent but redundant transaction.
         JLOG(j.trace()) << "Malformed transaction: " <<
-            "No ripple direct specified for SMC to SMC.";
+            "No ripple direct specified for SMR to SMR.";
         return temBAD_SEND_XRP_NO_DIRECT;
     }
 
@@ -354,7 +354,7 @@ Payment::doApply ()
 
     bool const bRipple = paths || sendMax || !saDstAmount.native ();
 
-    // If the destination has lsfDepositAuth set, then only direct SMC
+    // If the destination has lsfDepositAuth set, then only direct SMR
     // payments (no intermediate steps) are allowed to the destination.
     if (!depositPreauth && bRipple && reqDepositAuth)
         return tecNO_PERMISSION;
@@ -433,7 +433,7 @@ Payment::doApply ()
 
     assert (saDstAmount.native ());
 
-    // Direct SMC payment.
+    // Direct SMR payment.
 
     // uOwnerCount is the number of entries in this ledger for this
     // account that require a reserve.
@@ -466,19 +466,19 @@ Payment::doApply ()
     if (reqDepositAuth)
     {
         // If depositPreauth is enabled, then an account that requires
-        // authorization has three ways to get an SMC Payment in:
+        // authorization has three ways to get an SMR Payment in:
         //  1. If Account == Destination, or
         //  2. If Account is deposit preauthorized by destination, or
-        //  3. If the destination's SMC balance is
+        //  3. If the destination's SMR balance is
         //    a. less than or equal to the base reserve and
         //    b. the deposit amount is less than or equal to the base reserve,
         // then we allow the deposit.
         //
         // Rule 3 is designed to keep an account from getting wedged
         // in an unusable state if it sets the lsfDepositAuth flag and
-        // then consumes all of its SMC.  Without the rule if an
-        // account with lsfDepositAuth set spent all of its SMC, it
-        // would be unable to acquire more SMC required to pay fees.
+        // then consumes all of its SMR.  Without the rule if an
+        // account with lsfDepositAuth set spent all of its SMR, it
+        // would be unable to acquire more SMR required to pay fees.
         //
         // We choose the base reserve as our bound because it is
         // a small number that seldom changes but is always sufficient

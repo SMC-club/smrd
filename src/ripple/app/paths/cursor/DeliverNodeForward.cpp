@@ -180,7 +180,7 @@ TER PathCursor::deliverNodeForward (
             {
                 // ? --> OFFER --> account
                 // Input fees: vary based upon the consumed offer's owner.
-                // Output fees: none as SMC or the destination account is the
+                // Output fees: none as SMR or the destination account is the
                 // issuer.
 
                 saOutPassAct = saOutPassMax;
@@ -195,7 +195,7 @@ TER PathCursor::deliverNodeForward (
                     << " saOutPassAct=" << saOutPassAct
                     << " saOutFunded=" << saOutFunded;
 
-                // Output: Debit offer owner, send SMC or non-SMC to next
+                // Output: Debit offer owner, send SMR or non-SMR to next
                 // account.
                 resultCode = accountSend(view(),
                     node().offerOwnerAccount_,

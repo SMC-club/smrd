@@ -66,7 +66,7 @@ hash_append(Hasher& h, Issue const& r)
 
 /** Ordered comparison.
     The assets are ordered first by currency and then by account,
-    if the currency is not SMC.
+    if the currency is not SMR.
 */
 int
 compare (Issue const& lhs, Issue const& rhs);
@@ -93,7 +93,7 @@ operator<= (Issue const& lhs, Issue const& rhs);
 
 //------------------------------------------------------------------------------
 
-/** Returns an asset specifier that represents SMC. */
+/** Returns an asset specifier that represents SMR. */
 inline Issue const& xrpIssue ()
 {
     static Issue issue {xrpCurrency(), xrpAccount()};

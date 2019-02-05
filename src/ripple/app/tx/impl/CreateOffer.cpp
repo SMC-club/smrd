@@ -94,7 +94,7 @@ CreateOffer::preflight (PreflightContext const& ctx)
     if (saTakerPays.native () && saTakerGets.native ())
     {
         JLOG(j.debug()) <<
-            "Malformed offer: redundant (SMC for SMC)";
+            "Malformed offer: redundant (SMR for SMR)";
         return temBAD_OFFER;
     }
     if (saTakerPays <= beast::zero || saTakerGets <= beast::zero)
@@ -116,7 +116,7 @@ CreateOffer::preflight (PreflightContext const& ctx)
             "Malformed offer: redundant (IOU for IOU)";
         return temREDUNDANT;
     }
-    // We don't allow a non-native currency to use the currency code SMC.
+    // We don't allow a non-native currency to use the currency code SMR.
     if (badCurrency() == uPaysCurrency || badCurrency() == uGetsCurrency)
     {
         JLOG(j.debug()) <<
@@ -342,7 +342,7 @@ CreateOffer::bridged_cross (
     assert (!isXRP (takerAmount.in) && !isXRP (takerAmount.out));
 
     if (isXRP (takerAmount.in) || isXRP (takerAmount.out))
-        Throw<std::logic_error> ("Bridging with SMC and an endpoint.");
+        Throw<std::logic_error> ("Bridging with SMR and an endpoint.");
 
     OfferStream offers_direct (view, view_cancel,
         Book (taker.issue_in (), taker.issue_out ()),
@@ -628,7 +628,7 @@ CreateOffer::takerCross (
     // If the taker is unfunded before we begin crossing
     // there's nothing to do - just return an error.
     //
-    // We check this in preclaim, but when selling SMC
+    // We check this in preclaim, but when selling SMR
     // charged fees can cause a user's available balance
     // to go to 0 (by causing it to dip below the reserve)
     // so we check this case again.
@@ -665,7 +665,7 @@ CreateOffer::flowCross (
         // If the taker is unfunded before we begin crossing there's nothing
         // to do - just return an error.
         //
-        // We check this in preclaim, but when selling SMC charged fees can
+        // We check this in preclaim, but when selling SMR charged fees can
         // cause a user's available balance to go to 0 (by causing it to dip
         // below the reserve) so we check this case again.
         STAmount const inStartBalance = accountFunds (
@@ -708,8 +708,8 @@ CreateOffer::flowCross (
             sendMax = inStartBalance;
 
         // Always invoke flow() with the default path.  However if neither
-        // of the takerAmount currencies are SMC then we cross through an
-        // additional path with SMC as the intermediate between two books.
+        // of the takerAmount currencies are SMR then we cross through an
+        // additional path with SMR as the intermediate between two books.
         // This second path we have to build ourselves.
         STPathSet paths;
         if (!takerAmount.in.native() & !takerAmount.out.native())
@@ -847,7 +847,7 @@ static std::string to_string (SBoxCmp c)
     case SBoxCmp::offerDelDiff:
         return "offer del diffs";
     case SBoxCmp::xrpRound:
-        return "SMC round to zero";
+        return "SMR round to zero";
     case SBoxCmp::diff:
         return "different";
     }
@@ -866,15 +866,15 @@ static SBoxCmp compareSandboxes (char const* name, ApplyContext const& ctx,
     if (diff.hasDiff())
     {
         using namespace beast::severities;
-        // There is a special case of an offer with SMC on one side where
-        // the SMC gets rounded to zero.  It mostly looks like dust-level
+        // There is a special case of an offer with SMR on one side where
+        // the SMR gets rounded to zero.  It mostly looks like dust-level
         // differences.  It is easier to detect if we look for it before
         // removing the dust differences.
         if (int const side = diff.xrpRoundToZero())
         {
             char const* const whichSide = side > 0 ? "; Flow" : "; Taker";
             j.stream (kWarning) << "FlowCross: " << name << " different" <<
-                whichSide << " SMC rounded to zero.  tx: " <<
+                whichSide << " SMR rounded to zero.  tx: " <<
                 ctx.tx.getTransactionID();
             return SBoxCmp::xrpRound;
         }

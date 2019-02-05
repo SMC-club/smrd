@@ -102,11 +102,11 @@ public:
 };
 
 /**
- * @brief Invariant: A transaction must not create SMC and should only destroy
- * the SMC fee.
+ * @brief Invariant: A transaction must not create SMR and should only destroy
+ * the SMR fee.
  *
  * We iterate through all account roots, payment channels and escrow entries
- * that were modified and calculate the net change in SMC caused by the
+ * that were modified and calculate the net change in SMR caused by the
  * transactions.
  */
 class XRPNotCreated
@@ -149,11 +149,11 @@ public:
 };
 
 /**
- * @brief Invariant: An account SMC balance must be in SMC and take a value
+ * @brief Invariant: An account SMR balance must be in SMR and take a value
  *                   between 0 and SYSTEM_CURRENCY_START drops, inclusive.
  *
  * We iterate all account roots modified by the transaction and ensure that
- * their SMC balances are reasonable.
+ * their SMR balances are reasonable.
  */
 class XRPBalanceChecks
 {
@@ -193,7 +193,7 @@ public:
 };
 
 /**
- * @brief Invariant: Trust lines using SMC are not allowed.
+ * @brief Invariant: Trust lines using SMR are not allowed.
  *
  * We iterate all the trust lines created by this transaction and ensure
  * that they are against a valid issuer.
@@ -216,10 +216,10 @@ public:
 
 /**
  * @brief Invariant: offers should be for non-negative amounts and must not
- *                   be SMC to SMC.
+ *                   be SMR to SMR.
  *
  * Examine all offers modified by the transaction and ensure that there are
- * no offers which contain negative amounts or which exchange SMC for SMC.
+ * no offers which contain negative amounts or which exchange SMR for SMR.
  */
 class NoBadOffers
 {

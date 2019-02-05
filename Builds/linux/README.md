@@ -1,6 +1,6 @@
 # Linux Build Instructions
 
-This document focuses on building smcd for development purposes under recent
+This document focuses on building smrd for development purposes under recent
 Ubuntu linux distributions.
 
 Development is regularly done on Ubuntu 16.04 or later. For non Ubuntu
@@ -17,7 +17,7 @@ $ apt-get install -y gcc g++ wget git cmake protobuf-compiler libprotobuf-dev li
 ```
 
 Advanced users can choose to install newer versions of gcc, or the clang compiler.
-At this time, smcd only supports protobuf version 2. Using version 3 of 
+At this time, smrd only supports protobuf version 2. Using version 3 of 
 protobuf will give errors.
 
 ### Build Boost
@@ -37,19 +37,19 @@ $ ./b2 -j<Num Parallel>
 
 ### (Optional) Dependencies for Building Source Documentation
 
-Source code documentation is not required for running/debugging smcd. That
+Source code documentation is not required for running/debugging smrd. That
 said, the documentation contains some helpful information about specific
 components of the application. For more information on how to install and run
 the necessary components, see [this document](../../docs/README.md)
 
 ## Build
 
-### Clone the smcd repository
+### Clone the smrd repository
 
 From a shell:
 
 ```
-git clone git@github.com:CryptoManiac/smcd.git
+git clone git@github.com:CryptoManiac/smrd.git
 cd rippled
 ```
 
@@ -102,7 +102,7 @@ the `-j` parameter in this example tells the build tool to compile several
 files in parallel. This value should be chosen roughly based on the number of
 cores you have available and/or want to use for building.
 
-When the build completes succesfully, you will have a `smcd` executable in
+When the build completes succesfully, you will have a `smrd` executable in
 the current directory, which can be used to connect to the network (when
 properly configured) or to run unit tests.
 
@@ -129,8 +129,8 @@ Several other infrequently used options are available - run `ccmake` or
 
 #### Optional Installation
 
-The smcd cmake build supports an installation target that will install
-smcd as well as a support library that can be used to sign transactions. In
+The smrd cmake build supports an installation target that will install
+smrd as well as a support library that can be used to sign transactions. In
 order to build and install the files, specify the `install` target when
 building, e.g.:
 
@@ -158,7 +158,7 @@ If you want to use the signing support library to create an application, there
 are two simple mechanisms with cmake + git that facilitate this.
 
 With either option below, you will have access to a library from the
-smcd project that you can link to in your own project's CMakeLists.txt, e.g.:
+smrd project that you can link to in your own project's CMakeLists.txt, e.g.:
 
 ```
 target_link_libraries (my-signing-app Ripple::xrpl_core)
@@ -166,26 +166,26 @@ target_link_libraries (my-signing-app Ripple::xrpl_core)
 
 ##### Option 1: git submodules + add_subdirectory
 
-First, add the smcd repo as a submodule to your project repo:
+First, add the smrd repo as a submodule to your project repo:
 
 ```
-git submodule add -b master https://github.com/CryptoManiac/smcd.git vendor/smcd
+git submodule add -b master https://github.com/CryptoManiac/smrd.git vendor/smrd
 ```
 
-change the `vendor/smcd` path as desired for your repo layout. Furthermore,
-change the branch name if you want to track a different smcd branch, such
+change the `vendor/smrd` path as desired for your repo layout. Furthermore,
+change the branch name if you want to track a different smrd branch, such
 as `develop`.
    
-Second, to bring this submodule into your project, just add the smcd subdirectory:
+Second, to bring this submodule into your project, just add the smrd subdirectory:
 
 ```
-add_subdirectory (vendor/smcd)
+add_subdirectory (vendor/smrd)
 ```
     
-##### Option 2: installed smcd + find_package
+##### Option 2: installed smrd + find_package
 
 First, follow the "Optional Installation" instructions above to
-build and install the desired version of smcd.
+build and install the desired version of smrd.
 
 To make use of the installed files, add the following to your CMakeLists.txt file:
 

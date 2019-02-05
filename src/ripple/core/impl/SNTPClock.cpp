@@ -197,7 +197,7 @@ public:
 
     void doRun ()
     {
-        beast::setCurrentThreadName("smcd: SNTPClock");
+        beast::setCurrentThreadName("smrd: SNTPClock");
         io_service_.run();
     }
 

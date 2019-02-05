@@ -189,8 +189,8 @@ class XRPEndpointOfferCrossingStep :
 private:
 
     // For historical reasons, offer crossing is allowed to dig further
-    // into the SMC reserve than an ordinary payment.  (I believe it's
-    // because the trust line was created after the SMC was removed.)
+    // into the SMR reserve than an ordinary payment.  (I believe it's
+    // because the trust line was created after the SMR was removed.)
     // Return how much the reserve should be reduced.
     //
     // Note that reduced reserve only happens if the trust line does not
@@ -339,7 +339,7 @@ XRPEndpointStep<TDerived>::check (StrandContext const& ctx) const
     auto sleAcc = ctx.view.read (keylet::account (acc_));
     if (!sleAcc)
     {
-        JLOG (j_.warn()) << "XRPEndpointStep: can't send or receive SMC from "
+        JLOG (j_.warn()) << "XRPEndpointStep: can't send or receive SMR from "
                              "non-existent account: "
                           << acc_;
         return terNO_ACCOUNT;

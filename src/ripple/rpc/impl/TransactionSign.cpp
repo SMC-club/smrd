@@ -195,7 +195,7 @@ static Json::Value checkPayment(
 
         if (sendMax.native () && amount.native ())
             return RPC::make_error (rpcINVALID_PARAMS,
-                "Cannot build SMC to SMC paths.");
+                "Cannot build SMR to SMR paths.");
 
         {
             LegacyPathFind lpf (isUnlimited (role), app);
@@ -1131,14 +1131,14 @@ Json::Value transactionSubmitMultiSigned (
             return RPC::make_error (rpcINVALID_PARAMS, err.str ());
         }
 
-        // The Fee field must be in SMC and greater than zero.
+        // The Fee field must be in SMR and greater than zero.
         auto const fee = stpTrans->getFieldAmount (sfFee);
 
         if (!isLegalNet (fee))
         {
             std::ostringstream err;
             err << "Invalid " << sfFee.fieldName
-                << " field.  Fees must be specified in SMC.";
+                << " field.  Fees must be specified in SMR.";
             return RPC::make_error (rpcINVALID_PARAMS, err.str ());
         }
         if (fee <= 0)

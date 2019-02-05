@@ -164,7 +164,7 @@ int run (int argc, char** argv)
 {
     using namespace std;
 
-    beast::setCurrentThreadName ("smcd: main");
+    beast::setCurrentThreadName ("smrd: main");
 
     po::variables_map vm;
 
@@ -262,7 +262,7 @@ int run (int argc, char** argv)
     }
     catch (std::exception const&)
     {
-        std::cerr << "smcd: Incorrect command line syntax." << std::endl;
+        std::cerr << "smrd: Incorrect command line syntax." << std::endl;
         std::cerr << "Use '--help' for a list of options." << std::endl;
         return 1;
     }
@@ -275,7 +275,7 @@ int run (int argc, char** argv)
 
     if (vm.count ("version"))
     {
-        std::cout << "smcd version " <<
+        std::cout << "smrd version " <<
             BuildInfo::getVersionString () << std::endl;
         return 0;
     }
@@ -536,7 +536,7 @@ int run (int argc, char** argv)
     }
 
     // We have an RPC command to process:
-    beast::setCurrentThreadName ("smcd: rpc");
+    beast::setCurrentThreadName ("smrd: rpc");
     return RPCCall::fromCommandLine (
         *config,
         vm["parameters"].as<std::vector<std::string>>(),
@@ -574,7 +574,7 @@ int main (int argc, char** argv)
                             __GNUC_PATCHLEVEL__;
 
     static_assert (gccver >= 50100,
-        "GCC version 5.1.0 or later is required to compile smcd.");
+        "GCC version 5.1.0 or later is required to compile smrd.");
 #endif
 
     atexit(&google::protobuf::ShutdownProtobufLibrary);

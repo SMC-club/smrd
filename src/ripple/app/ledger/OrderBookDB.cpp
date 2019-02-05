@@ -164,11 +164,11 @@ void OrderBookDB::addOrderBook(Book const& book)
 
     if (toXRP)
     {
-        // We don't want to search through all the to-SMC or from-SMC order
+        // We don't want to search through all the to-SMR or from-SMR order
         // books!
         for (auto ob: mSourceMap[book.in])
         {
-            if (isXRP (ob->getCurrencyOut ())) // also to SMC
+            if (isXRP (ob->getCurrencyOut ())) // also to SMR
                 return;
         }
     }

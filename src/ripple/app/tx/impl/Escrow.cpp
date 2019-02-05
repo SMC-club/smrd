@@ -45,16 +45,16 @@ namespace ripple {
     Escrow
     ======
 
-    Escrow is a feature of the SMC Ledger that allows you to send conditional
-    SMC payments. These conditional payments, called escrows, set aside SMC and
+    Escrow is a feature of the SMR Ledger that allows you to send conditional
+    SMR payments. These conditional payments, called escrows, set aside SMR and
     deliver it later when certain conditions are met. Conditions to successfully
     finish an escrow include time-based unlocks and crypto-conditions. Escrows
     can also be set to expire if not finished in time.
 
-    The SMC set aside in an escrow is locked up. No one can use or destroy the
-    SMC until the escrow has been successfully finished or canceled. Before the
-    expiration time, only the intended receiver can get the SMC. After the
-    expiration time, the SMC can only be returned to the sender.
+    The SMR set aside in an escrow is locked up. No one can use or destroy the
+    SMR until the escrow has been successfully finished or canceled. Before the
+    expiration time, only the intended receiver can get the SMR. After the
+    expiration time, the SMR can only be returned to the sender.
 
     For more details on escrow, including examples, diagrams and more please
     visit https://ripple.com/build/escrow/#escrow

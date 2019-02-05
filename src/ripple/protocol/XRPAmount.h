@@ -159,11 +159,11 @@ mulRatio (
             r -= 1;
     }
     if (r > std::numeric_limits<std::int64_t>::max ())
-        Throw<std::overflow_error> ("SMC mulRatio overflow");
+        Throw<std::overflow_error> ("SMR mulRatio overflow");
     return XRPAmount (r.convert_to<std::int64_t> ());
 }
 
-/** Returns true if the amount does not exceed the initial SMC in existence. */
+/** Returns true if the amount does not exceed the initial SMR in existence. */
 inline
 bool isLegalAmount (XRPAmount const& amount)
 {

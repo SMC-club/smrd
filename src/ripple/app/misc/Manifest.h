@@ -58,11 +58,11 @@ namespace ripple {
     seen for that validator, if any.  On startup, the [validator_token] config
     entry (which contains the manifest for this validator) is decoded and
     added to the manifest cache.  Other manifests are added as "gossip"
-    received from smcd peers.
+    received from smrd peers.
 
     When an ephemeral key is compromised, a new signing key pair is created,
     along with a new manifest vouching for it (with a higher sequence number),
-    signed by the master key.  When a smcd peer receives the new manifest,
+    signed by the master key.  When a smrd peer receives the new manifest,
     it verifies it with the master key and (assuming it's valid) discards the
     old ephemeral key and stores the new one.  If the master key itself gets
     compromised, a manifest with sequence number 0xFFFFFFFF will supersede a

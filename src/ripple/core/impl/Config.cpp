@@ -133,7 +133,7 @@ bool getSingleSection (IniFileSections& secSource,
 //
 //------------------------------------------------------------------------------
 
-char const* const Config::configFileName = "smcd.cfg";
+char const* const Config::configFileName = "smrd.cfg";
 char const* const Config::databaseDirName = "db";
 char const* const Config::validatorsFileName = "validators.txt";
 

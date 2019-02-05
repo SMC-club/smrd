@@ -21,8 +21,8 @@
 */
 //==============================================================================
 
-#ifndef BEAST_CONFIG_PLATFOSMCONFIG_H_INCLUDED
-#define BEAST_CONFIG_PLATFOSMCONFIG_H_INCLUDED
+#ifndef BEAST_CONFIG_PLATFOSMRONFIG_H_INCLUDED
+#define BEAST_CONFIG_PLATFOSMRONFIG_H_INCLUDED
 
 //==============================================================================
 /*  This file figures out which platform is being built, and defines some macros

@@ -82,7 +82,7 @@ public:
     void
     rawReplace (std::shared_ptr<SLE> const& sle) = 0;
 
-    /** Destroy SMC.
+    /** Destroy SMR.
 
         This is used to pay for transaction fees.
     */

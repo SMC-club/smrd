@@ -106,7 +106,7 @@ getVersionString ()
 std::string const& getFullVersionString ()
 {
     static std::string const value =
-        "smcd-" + getVersionString();
+        "smrd-" + getVersionString();
     return value;
 }
 

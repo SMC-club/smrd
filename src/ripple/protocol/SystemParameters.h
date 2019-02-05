@@ -32,16 +32,16 @@ static inline
 std::string const&
 systemName ()
 {
-    static std::string const name = "smc";
+    static std::string const name = "smr";
     return name;
 }
 
-/** Initial 10757 SMCs for the genesis ledger. */
+/** Initial 10757 SMRs for the genesis ledger. */
 static
 std::int64_t const
 SYSTEM_CURRENCY_COINS = 10757000;
 
-/** Number of drops per 1 SMC */
+/** Number of drops per 1 SMR */
 static
 std::int64_t const
 SYSTEM_CURRENCY_PARTS = 1000000;
@@ -56,11 +56,11 @@ static inline
 std::string const&
 systemCurrencyCode ()
 {
-    static std::string const code = "SMC";
+    static std::string const code = "SMR";
     return code;
 }
 
-/** The SMC ledger network's earliest allowed sequence */
+/** The SMR ledger network's earliest allowed sequence */
 static
 std::uint32_t constexpr
 XRP_LEDGER_EARLIEST_SEQ {1};

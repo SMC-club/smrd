@@ -99,7 +99,7 @@ parseHexOrBase58 (std::string const& s);
 //AccountID
 //calcAccountID (PublicKey const& pk);
 
-/** A special account that's used as the "issuer" for SMC. */
+/** A special account that's used as the "issuer" for SMR. */
 AccountID const&
 xrpAccount();
 
@@ -143,7 +143,7 @@ inline std::ostream& operator<< (std::ostream& os, AccountID const& x)
 /** Caches the base58 representations of AccountIDs
 
     This operation occurs with sufficient frequency to
-    justify having a cache. In the future, smcd should
+    justify having a cache. In the future, smrd should
     require clients to receive "binary" results, where
     AccountIDs are hex-encoded.
 */

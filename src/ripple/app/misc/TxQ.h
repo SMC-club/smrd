@@ -398,7 +398,7 @@ private:
 
             @param app Rippled Application object.
             @param view View of the LCL that was just closed or received.
-            @param timeLeap Indicates that smcd is under load so fees
+            @param timeLeap Indicates that smrd is under load so fees
             should grow faster.
             @param setup Customization params.
         */

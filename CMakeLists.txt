@@ -13,7 +13,7 @@ if (target)
     "The target option is deprecated and will be removed in a future release")
   parse_target()
 endif ()
-project (smcd)
+project (smrd)
 
 #[===================================================================[
    convenience variables and sanity checks
@@ -78,7 +78,7 @@ endif ()
 
 if (NOT CMAKE_SIZEOF_VOID_P EQUAL 8)
   message (FATAL_ERROR "Rippled requires a 64 bit target architecture.\n"
-    "The most likely cause of this warning is trying to build smcd with a 32-bit OS.")
+    "The most likely cause of this warning is trying to build smrd with a 32-bit OS.")
 endif ()
 
 if (APPLE AND NOT HOMEBREW)
@@ -96,9 +96,9 @@ foreach (line_ ${BUILD_INFO})
   endif ()
 endforeach ()
 if (rippled_version)
-  message (STATUS "smcd version: ${rippled_version}")
+  message (STATUS "smrd version: ${rippled_version}")
 else ()
-  message (FATAL_ERROR "unable to determine smcd version")
+  message (FATAL_ERROR "unable to determine smrd version")
 endif ()
 
 #[===================================================================[
@@ -359,7 +359,7 @@ if (assert)
 endif ()
 
 #[===================================================================[
-   smcd compile options/settings via an interface library
+   smrd compile options/settings via an interface library
 #]===================================================================]
 
 add_library (opts INTERFACE)
@@ -423,7 +423,7 @@ if (san)
 endif ()
 
 #[===================================================================[
-   smcd transitive library deps via an interface library
+   smrd transitive library deps via an interface library
 #]===================================================================]
 
 add_library (ripple_syslibs INTERFACE)
@@ -1597,7 +1597,7 @@ install (
 #  unfortunately unit_test.h above creates this dependency)
 
 #[===================================================================[
-   smcd executable
+   smrd executable
 #]===================================================================]
 
 #[=========================================================[
@@ -1605,9 +1605,9 @@ install (
    versions of cmake happy. cmake 3.10+ allows
    add_executable with no sources
 #]=========================================================]
-add_executable (smcd src/ripple/app/main/Application.h)
+add_executable (smrd src/ripple/app/main/Application.h)
 if (unity)
-  target_sources (smcd PRIVATE
+  target_sources (smrd PRIVATE
     #[===============================[
        unity, main sources
     #]===============================]
@@ -1637,7 +1637,7 @@ if (unity)
     src/ripple/unity/server.cpp
     src/ripple/unity/soci_ripple.cpp)
 else ()
-  target_sources (smcd PRIVATE
+  target_sources (smrd PRIVATE
     #[===============================[
        nounity, main sources:
          subdir: app
@@ -1948,12 +1948,12 @@ else ()
     src/ripple/shamap/impl/SHAMapSync.cpp
     src/ripple/shamap/impl/SHAMapTreeNode.cpp)
 endif ()
-target_link_libraries (smcd
+target_link_libraries (smrd
   Ripple::opts
   Ripple::libs
   Ripple::boost
   Ripple::xrpl_core)
-exclude_if_included (smcd)
+exclude_if_included (smrd)
 
 #[===================================================================[
    install stuff
@@ -1983,8 +1983,8 @@ write_basic_package_version_file (
   COMPATIBILITY SameMajorVersion)
 
 if (is_root_project)
-  install (TARGETS smcd RUNTIME DESTINATION bin)
-  set_target_properties(smcd PROPERTIES INSTALL_RPATH_USE_LINK_PATH ON)
+  install (TARGETS smrd RUNTIME DESTINATION bin)
+  set_target_properties(smrd PROPERTIES INSTALL_RPATH_USE_LINK_PATH ON)
   install (
     FILES
       ${CMAKE_CURRENT_SOURCE_DIR}/Builds/CMake/RippleConfig.cmake
@@ -2001,7 +2001,7 @@ if (is_root_project)
         message (\"-- Skipping : \$ENV{DESTDIR}\${CMAKE_INSTALL_PREFIX}/\${DEST}/\${NEWNAME}\")
       endif ()
     endmacro()
-    copy_if_not_exists(\"${CMAKE_CURRENT_SOURCE_DIR}/cfg/smcd-example.cfg\" etc smcd.cfg)
+    copy_if_not_exists(\"${CMAKE_CURRENT_SOURCE_DIR}/cfg/smrd-example.cfg\" etc smrd.cfg)
     copy_if_not_exists(\"${CMAKE_CURRENT_SOURCE_DIR}/cfg/validators-example.txt\" etc validators.txt)
   ")
 endif ()
@@ -2022,7 +2022,7 @@ if (is_multiconfig)
   file(GLOB md_files RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} CONFIGURE_DEPENDS
     *.md)
   LIST(APPEND all_sources ${md_files})
-  foreach (_target secp256k1 rocksdb pbufs xrpl_core smcd)
+  foreach (_target secp256k1 rocksdb pbufs xrpl_core smrd)
     get_target_property (_type ${_target} TYPE)
     if(_type STREQUAL "INTERFACE_LIBRARY")
       continue()
@@ -2030,7 +2030,7 @@ if (is_multiconfig)
     get_target_property (_src ${_target} SOURCES)
     list (REMOVE_ITEM all_sources ${_src})
   endforeach ()
-  target_sources (smcd PRIVATE ${all_sources})
+  target_sources (smrd PRIVATE ${all_sources})
   set_property (
     SOURCE ${all_sources}
     APPEND
@@ -2038,7 +2038,7 @@ if (is_multiconfig)
   if (MSVC)
     set_property(
       DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-      PROPERTY VS_STARTUP_PROJECT smcd)
+      PROPERTY VS_STARTUP_PROJECT smrd)
   endif ()
 
   group_sources(src)

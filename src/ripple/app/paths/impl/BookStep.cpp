@@ -539,7 +539,7 @@ BookStep<TIn, TOut, TDerived>::forEachOffer (
                 continue;
 
         // Make sure offer owner has authorization to own IOUs from issuer.
-        // An account can always own SMC or their own IOUs.
+        // An account can always own SMR or their own IOUs.
         if (flowCross &&
             (!isXRP (offer.issueIn().currency)) &&
             (offer.owner() != offer.issueIn().account))

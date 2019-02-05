@@ -173,9 +173,9 @@ CashCheck::preclaim (PreclaimContext const& ctx)
             STAmount availableFunds {accountFunds (ctx.view,
                 (*sleCheck)[sfAccount], value, fhZERO_IF_FROZEN, ctx.j)};
 
-            // Note that src will have one reserve's worth of additional SMC
+            // Note that src will have one reserve's worth of additional SMR
             // once the check is cashed, since the check's reserve will no
-            // longer be required.  So, if we're dealing in SMC, we add one
+            // longer be required.  So, if we're dealing in SMR, we add one
             // reserve's worth to the available funds.
             if (value.native())
                 availableFunds += XRPAmount (ctx.view.fees().increment);
@@ -288,10 +288,10 @@ CashCheck::doApply ()
     {
         STAmount const sendMax {sleCheck->getFieldAmount (sfSendMax)};
 
-        // Flow() doesn't do SMC to SMC transfers.
+        // Flow() doesn't do SMR to SMR transfers.
         if (sendMax.native())
         {
-            // Here we need to calculate the amount of SMC sleSrc can send.
+            // Here we need to calculate the amount of SMR sleSrc can send.
             // The amount they have available is their balance minus their
             // reserve.
             //
@@ -310,7 +310,7 @@ CashCheck::doApply ()
             {
                 // Vote no. However the transaction might succeed if applied
                 // in a different order.
-                JLOG(j_.trace()) << "Cash Check: Insufficient SMC: "
+                JLOG(j_.trace()) << "Cash Check: Insufficient SMR: "
                     << srcLiquid.getFullText()
                     << " < " << xrpDeliver.getFullText();
                 return tecUNFUNDED_PAYMENT;
@@ -320,7 +320,7 @@ CashCheck::doApply ()
                 // Set the DeliveredAmount metadata.
                 ctx_.deliver (xrpDeliver);
 
-            // The source account has enough SMC so make the ledger change.
+            // The source account has enough SMR so make the ledger change.
             transferXRP (psb, srcId, account_, xrpDeliver, viewJ);
         }
         else

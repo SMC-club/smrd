@@ -104,7 +104,7 @@ flow (
 
     if (isDirectXrpToXrp<TInAmt, TOutAmt> (strand))
     {
-        // The current implementation returns NO_LINE for SMC->SMC transfers.
+        // The current implementation returns NO_LINE for SMR->SMR transfers.
         // Keep this behavior
         return {tecNO_LINE, std::move (ofrsToRm)};
     }

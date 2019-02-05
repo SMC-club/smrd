@@ -892,25 +892,25 @@ TxQ::apply(Application& app, OpenView& view,
                         this account. Currently, it will not count,
                         for the same reason that it is not checked on
                         the first transaction.
-                    Assume: Minimum account reserve is 20 SMC.
-                    Example 1: If I have 1,000,000 SMC, I can queue
-                        a transaction with a 1,000,000 SMC fee. In
+                    Assume: Minimum account reserve is 20 SMR.
+                    Example 1: If I have 1,000,000 SMR, I can queue
+                        a transaction with a 1,000,000 SMR fee. In
                         the meantime, some other transaction may
                         lower my balance (eg. taking an offer). When
                         the transaction executes, I will either
-                        spend the 1,000,000 SMC, or the transaction
+                        spend the 1,000,000 SMR, or the transaction
                         will get stuck in the queue with a
                         `terINSUF_FEE_B`.
-                    Example 2: If I have 1,000,000 SMC, and I queue
-                        10 transactions with 0.1 SMC fee, I have 1 SMC
+                    Example 2: If I have 1,000,000 SMR, and I queue
+                        10 transactions with 0.1 SMR fee, I have 1 SMR
                         in flight. I can now queue another tx with a
-                        999,999 SMC fee. When the first 10 execute,
+                        999,999 SMR fee. When the first 10 execute,
                         they're guaranteed to pay their fee, because
                         nothing can eat into my reserve. The last
                         transaction, again, will either spend the
-                        999,999 SMC, or get stuck in the queue.
-                    Example 3: If I have 1,000,000 SMC, and I queue
-                        7 transactions with 3 SMC fee, I have 21 SMC
+                        999,999 SMR, or get stuck in the queue.
+                    Example 3: If I have 1,000,000 SMR, and I queue
+                        7 transactions with 3 SMR fee, I have 21 SMR
                         in flight. I can not queue any more transactions,
                         no matter how small or large the fee.
                     Transactions stuck in the queue are mitigated by

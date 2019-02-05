@@ -31,7 +31,7 @@ huge
 
 [node_db]
 type=NuDB
-path=/var/opt/smc/db/NuDB
+path=/var/opt/smr/db/NuDB
 
 [ledger_history]
 full
@@ -39,7 +39,7 @@ full
 # This needs to be an absolute directory reference, not a relative one.
 # Modify this value as required.
 [debug_logfile]
-/var/log/smcd/debug.log
+/var/log/smrd/debug.log
 
 [sntp_servers]
 time.windows.com
@@ -49,13 +49,13 @@ pool.ntp.org
 
 # Where to find some other servers speaking the peer-to-peer protocol.
 [ips]
-peer.smc.one 41235
-alpha.smc.one 41235
-beta.smc.one 41235
+peer.smr.one 41235
+alpha.smr.one 41235
+beta.smr.one 41235
 
 # File containing trusted validator keys or validator list publishers.
 # Unless an absolute path is specified, it will be considered relative to the
-# folder in which the smcd.cfg file is located.
+# folder in which the smrd.cfg file is located.
 [validators_file]
 validators.txt
 

@@ -2,7 +2,7 @@
 
 ## Important
 
-We don't recommend macos for smcd production use at this time. Currently, the
+We don't recommend macos for smrd production use at this time. Currently, the
 Ubuntu platform has received the highest level of quality assurance and
 testing. That said, macos is suitable for many development/test tasks.
 
@@ -11,7 +11,7 @@ testing. That said, macos is suitable for many development/test tasks.
 You'll need macos 10.8 or later.
 
 To clone the source code repository, create branches for inspection or
-modification, build smcd using clang, and run the system tests you will need
+modification, build smrd using clang, and run the system tests you will need
 these software components:
 
 * [XCode](https://developer.apple.com/xcode/)
@@ -51,7 +51,7 @@ For more info, see "Step 2: Install Homebrew"
 ### Install Dependencies Using Homebrew
 
 `brew` will generally install the latest stable version of any package, which
-should satisfy the the minimum version requirements for smcd.
+should satisfy the the minimum version requirements for smrd.
 
 ```
 brew update
@@ -78,20 +78,20 @@ to the root of the extracted directory.
 
 ### Dependencies for Building Source Documentation
 
-Source code documentation is not required for running/debugging smcd. That
+Source code documentation is not required for running/debugging smrd. That
 said, the documentation contains some helpful information about specific
 components of the application. For more information on how to install and run
 the necessary components, see [this document](../../docs/README.md)
 
 ## Build
 
-### Clone the smcd repository
+### Clone the smrd repository
 
 From a shell:
 
 ```
-git clone git@github.com:CryptoManiac/smcd.git
-cd smcd
+git clone git@github.com:CryptoManiac/smrd.git
+cd smrd
 ```
 
 ### Configure Library Paths
@@ -144,7 +144,7 @@ the `-j` parameter in this example tells the build tool to compile several
 files in parallel. This value should be chosen roughly based on the number of
 cores you have available and/or want to use for building.
 
-When the build completes succesfully, you will have a `smcd` executable in
+When the build completes succesfully, you will have a `smrd` executable in
 the current directory, which can be used to connect to the network (when
 properly configured) or to run unit tests.
 

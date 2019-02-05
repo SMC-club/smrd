@@ -34,9 +34,9 @@
 
 Core Pathfinding Engine
 
-The pathfinding request is identified by category, SMC to SMC, SMC to
-non-SMC, non-SMC to SMC, same currency non-SMC to non-SMC, cross-currency
-non-SMC to non-SMC.  For each category, there is a table of paths that the
+The pathfinding request is identified by category, SMR to SMR, SMR to
+non-SMR, non-SMR to SMR, same currency non-SMR to non-SMR, cross-currency
+non-SMR to non-SMR.  For each category, there is a table of paths that the
 pathfinder searches for.  Complete paths are collected.
 
 Each complete path is then rated and sorted. Paths with no or trivial
@@ -250,7 +250,7 @@ bool Pathfinder::findPaths (int searchLevel)
         if (!bDstXrp)
         {
             JLOG (j_.debug())
-                    << "New account not being funded in SMC ";
+                    << "New account not being funded in SMR ";
             return false;
         }
 
@@ -269,32 +269,32 @@ bool Pathfinder::findPaths (int searchLevel)
     PaymentType paymentType;
     if (bSrcXrp && bDstXrp)
     {
-        // SMC -> SMC
-        JLOG (j_.debug()) << "SMC to SMC payment";
+        // SMR -> SMR
+        JLOG (j_.debug()) << "SMR to SMR payment";
         paymentType = pt_XRP_to_XRP;
     }
     else if (bSrcXrp)
     {
-        // SMC -> non-SMC
-        JLOG (j_.debug()) << "SMC to non-SMC payment";
+        // SMR -> non-SMR
+        JLOG (j_.debug()) << "SMR to non-SMR payment";
         paymentType = pt_XRP_to_nonXRP;
     }
     else if (bDstXrp)
     {
-        // non-SMC -> SMC
-        JLOG (j_.debug()) << "non-SMC to SMC payment";
+        // non-SMR -> SMR
+        JLOG (j_.debug()) << "non-SMR to SMR payment";
         paymentType = pt_nonXRP_to_XRP;
     }
     else if (mSrcCurrency == mDstAmount.getCurrency ())
     {
-        // non-SMC -> non-SMC - Same currency
-        JLOG (j_.debug()) << "non-SMC to non-SMC - same currency";
+        // non-SMR -> non-SMR - Same currency
+        JLOG (j_.debug()) << "non-SMR to non-SMR - same currency";
         paymentType = pt_nonXRP_to_same;
     }
     else
     {
-        // non-SMC to non-SMC - Different currency
-        JLOG (j_.debug()) << "non-SMC to non-SMC - cross currency";
+        // non-SMR to non-SMR - Different currency
+        JLOG (j_.debug()) << "non-SMR to non-SMR - cross currency";
         paymentType = pt_nonXRP_to_nonXRP;
     }
 
@@ -914,7 +914,7 @@ void Pathfinder::addLink (
         if (bOnXRP)
         {
             if (mDstAmount.native () && !currentPath.empty ())
-            { // non-default path to SMC destination
+            { // non-default path to SMR destination
                 JLOG (j_.trace())
                     << "complete path found ax: " << currentPath.getJson(0);
                 addUniquePath (mCompletePaths, currentPath);
@@ -1062,7 +1062,7 @@ void Pathfinder::addLink (
         // add order books
         if (addFlags & afOB_XRP)
         {
-            // to SMC only
+            // to SMR only
             if (!bOnXRP && app_.getOrderBookDB ().isBookToXRP (
                     {uEndCurrency, uEndIssuer}))
             {
@@ -1095,7 +1095,7 @@ void Pathfinder::addLink (
                     STPath newPath (currentPath);
 
                     if (book->getCurrencyOut().isZero())
-                    { // to SMC
+                    { // to SMR
 
                         // add the order book itself
                         newPath.emplace_back (
@@ -1106,7 +1106,7 @@ void Pathfinder::addLink (
 
                         if (mDstAmount.getCurrency ().isZero ())
                         {
-                            // destination is SMC, add account and path is
+                            // destination is SMR, add account and path is
                             // complete
                             JLOG (j_.trace())
                                 << "complete path found bx: "
@@ -1253,15 +1253,15 @@ void Pathfinder::initPathTable ()
 
     fillPaths(
         pt_nonXRP_to_XRP, {
-            {1, "sxd"},       // gateway buys SMC
-            {2, "saxd"},      // source -> gateway -> book(SMC) -> dest
+            {1, "sxd"},       // gateway buys SMR
+            {2, "saxd"},      // source -> gateway -> book(SMR) -> dest
             {6, "saaxd"},
             {7, "sbxd"},
             {8, "sabxd"},
             {9, "sabaxd"}
         });
 
-    // non-SMC to non-SMC (same currency)
+    // non-SMR to non-SMR (same currency)
     fillPaths(
         pt_nonXRP_to_same,  {
             {1, "sad"},     // source -> gateway -> destination
@@ -1272,14 +1272,14 @@ void Pathfinder::initPathTable ()
             {5, "sbfd"},
             {6, "sxfad"},
             {6, "safad"},
-            {6, "saxfd"},   // source -> gateway -> book to SMC -> book ->
+            {6, "saxfd"},   // source -> gateway -> book to SMR -> book ->
                             // destination
             {6, "saxfad"},
             {6, "sabfd"},   // source -> gateway -> book -> book -> destination
             {7, "saaad"},
         });
 
-    // non-SMC to non-SMC (different currency)
+    // non-SMR to non-SMR (different currency)
     fillPaths(
         pt_nonXRP_to_nonXRP, {
             {1, "sfad"},
