@@ -36,15 +36,15 @@ systemName ()
     return name;
 }
 
-/** Initial 10757 SMRs for the genesis ledger. */
+/** Initial 10756.8259 SMRs for the genesis ledger. */
 static
 std::int64_t const
-SYSTEM_CURRENCY_COINS = 10757000;
+SYSTEM_CURRENCY_COINS = 1075682590;
 
 /** Number of drops per 1 SMR */
 static
 std::int64_t const
-SYSTEM_CURRENCY_PARTS = 1000000;
+SYSTEM_CURRENCY_PARTS = 100000000;
 
 /** Number of drops in the genesis account. */
 static
