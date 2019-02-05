@@ -39,7 +39,7 @@ systemName ()
 /** Initial 10756.8259 SMRs for the genesis ledger. */
 static
 std::int64_t const
-SYSTEM_CURRENCY_COINS = 1075682590;
+SYSTEM_CURRENCY_DROPS = 1075682590000;
 
 /** Number of drops per 1 SMR */
 static
@@ -49,7 +49,7 @@ SYSTEM_CURRENCY_PARTS = 100000000;
 /** Number of drops in the genesis account. */
 static
 std::int64_t const
-SYSTEM_CURRENCY_START = SYSTEM_CURRENCY_COINS * SYSTEM_CURRENCY_PARTS;
+SYSTEM_CURRENCY_START = SYSTEM_CURRENCY_DROPS;
 
 /* The currency code for the native currency. */
 static inline
